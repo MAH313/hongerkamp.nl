@@ -7,6 +7,7 @@
 
 
 	<form method='POST' action='/{$smarty.get.uri}'>
+		<input type='hidden' name='token' value='{$token}'>
 
 
 		<div class="mb-3">

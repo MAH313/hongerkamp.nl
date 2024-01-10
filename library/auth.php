@@ -5,7 +5,7 @@ class Auth{
 	private $session_cookie_name = 'session';
 	private $session_lifetime = 86400; // 1 dag
 
-	private $active_user = null;
+	private $active_user, $userModel, $sessionModel;
 
 	function __construct(){
 		$this->userModel = new userModel();

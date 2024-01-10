@@ -27,7 +27,7 @@ class Gebruikers extends Controller{
 			$user = $this->userModel->getById($this->parameters['id']);
 		}
 
-		if($_POST){
+		if($this->is_post){
 			if(!$user){
 				$this->auth->createUser($_POST['username'], $_POST['email'], $_POST['password']);
 			}

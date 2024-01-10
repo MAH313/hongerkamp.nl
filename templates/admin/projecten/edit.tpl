@@ -3,10 +3,15 @@
 <div class="container-xxl mb-5 mt-5">
 	<a href='/admin/projecten' style='margin-bottom: 2rem'><i class='bi bi-arrow-left'></i> Terug naar overzicht</a>
 
-	<h2 class='mb-3 mt-3'>{if $project}Bewerk '{$project.title}'{else}Nieuw project{/if}</h2>
+	<h2 class='mb-3 mt-3'>{if $project}Teksten voor '{$project.title}'{else}Nieuw project{/if}</h2>
 
+	<nav class="nav nav-tabs mb-3">
+	  	<a class="nav-link active" aria-current="page" href="/admin/projecten/edit/id/{$project.id}">Teksten</a>
+	  	<a class="nav-link" href="/admin/projecten/assets/id/{$project.id}">Afbeeldingen</a>
+	</nav>
 
 	<form method='POST' action='/{$smarty.get.uri}'>
+		<input type='hidden' name='token' value='{$token}'>
 
 		<div class="mb-3 form-check">
 			<input type="hidden" name='is_visible' value='0'>

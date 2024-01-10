@@ -19,7 +19,7 @@ foreach (glob("controllers/*.php") as $filename){
 
 
 ini_set('display_errors', 1);
-//error_reporting(E_ALL);
+error_reporting(E_ALL - E_NOTICE);
 
 $route = new Route();
 
@@ -44,6 +44,12 @@ $route->addPath("/project/id/(?'id'[0-9]+)", "Index", "project");
 $route->addPath("/admin(/projecten)?", "Projecten", "index");
 $route->addPath("/admin/projecten/edit(/id/(?'id'[0-9]*))?", "Projecten", "edit");
 $route->addPath("/admin/projecten/delete/id/(?'id'[0-9]+)", "Projecten", "delete");
+
+$route->addPath("/admin/projecten/assets(/id/(?'id'[0-9]*))", "Projecten", "assets");
+$route->addPath("/admin/projecten/upload-asset", "Projecten", "upload_asset");
+$route->addPath("/admin/projecten/delete-asset", "Projecten", "delete_asset");
+$route->addPath("/admin/projecten/reorder-asset", "Projecten", "reorder_assets");
+
 
 $route->addPath("/admin/gebruikers", "Gebruikers", "index");
 $route->addPath("/admin/gebruikers/edit(/id/(?'id'[0-9]*))?", "Gebruikers", "edit");

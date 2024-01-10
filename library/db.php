@@ -3,14 +3,14 @@
 class database{
     //database class
 
-	public $schema;
+	
 	protected $connection;
 
+	public $schema;
 	public $include_created_modified = true;
 
 	function __construct(){
 		$this->connection = $this->connect();
-		$this->user = ['id' => 1];
 	}
 
 	function __destruct(){
@@ -55,7 +55,11 @@ class database{
 	public function add($values){
 		if($this->include_created_modified){
 			$values['created'] = date('Y-m-d H:i:s');
-			$values['created_by'] = $this->user['id'];
+
+			$auth = new Auth();
+			$session = $auth->getLoggedIn();
+
+			$values['created_by'] = $session['user_id'];
 		}
 
 		$assignments = $this->_getAssignmentList($values);
@@ -77,7 +81,11 @@ class database{
 	public function update($id, $values){
 		if($this->include_created_modified){
 			$values['modified'] = date('Y-m-d H:i:s');
-			$values['modified_by'] = $this->user['id'];
+
+			$auth = new Auth();
+			$session = $auth->getLoggedIn();
+
+			$values['modified_by'] = $session['user_id'];
 		}
 
 		$assignments = $this->_getAssignmentList($values);
